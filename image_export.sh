@@ -1,4 +1,20 @@
 #!/bin/bash
+
+# 
+# MySQLに格納されていた画像データをexportする。
+# "EXPORT_DIR" は、次のコマンドで表示されるパスを指定する
+#   > SELECT @@global.secure_file_priv;
+# 
+# 参考: https://qiita.com/kiyodori/items/7281a5bdcfbcbbe03c68
+# 
+# mysql> SELECT @@global.secure_file_priv;
+# +---------------------------+
+# | @@global.secure_file_priv |
+# +---------------------------+
+# | /var/lib/mysql-files/     |
+# +---------------------------+# 
+
+
 EXPORT_DIR="/var/lib/mysql-files"
 DBPASSWORD="isucon"
 

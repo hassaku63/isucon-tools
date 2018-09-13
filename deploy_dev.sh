@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# 
+# - サービスリスタート
+# - Developをデプロイ
+# - ベンチマークを実行
+# - Slack通知
+# 
+
 function restart() {
 	sudo systemctl stop isubata.python.service
 	sudo systemctl stop nginx
@@ -12,8 +19,10 @@ function restart() {
 pushd /home/isucon/isubata/webapp/python
 echo Working Directory: `pwd`
 
+# Service restart
 sudo service nginx rotate
 
+# Deploy from dev
 git pull origin dev-hashimoto \
 	&& git branch -v \
 	&& restart \
@@ -21,10 +30,12 @@ git pull origin dev-hashimoto \
 	echo "deploy done."
 popd
 
+# Run benchmark
 pushd /home/isucon/isubata/bench
 of=/home/isucon/result.json
 ./bin/bench -remotes localhost -data data -output ${of}
 
+# Slack notification
 #result=`cat ${of} | jq -r '"pass:" + .pass + ", score:" + .score'`
 #echo ${result}
 #

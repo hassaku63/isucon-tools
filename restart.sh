@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 
+# サービスのリスタートのみを実行
+# 
+
 function restart() {
 	sudo systemctl stop isubata.python.service
 	sudo systemctl stop nginx

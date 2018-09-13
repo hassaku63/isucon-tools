@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# 
+# サービスリスタートの後、
+# ベンチマークを実行する
+# 
+
 function restart() {
 	sudo systemctl stop isubata.python.service
 	sudo systemctl stop nginx

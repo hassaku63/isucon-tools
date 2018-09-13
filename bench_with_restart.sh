@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# 
+# サービスリスタートの後、
+# ベンチマークを実行する
+# 
+
 function restart() {
 	sudo systemctl stop isubata.python.service
 	sudo systemctl stop nginx
@@ -12,6 +17,7 @@ function restart() {
 restart 
 sudo service nginx rotate
 
+# Bench
 pushd /home/isucon/isubata/bench
 of=/home/isucon/result.json
 ./bin/bench -remotes localhost -data data -output ${of}
